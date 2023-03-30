@@ -6,6 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+
 class Language(Base):
     __tablename__ = "languages"
 
@@ -14,6 +15,7 @@ class Language(Base):
 
     def __repr__(self):
         return f'Language ({self.name})'
+
 
 class Category(Base):
     __tablename__ = "categories"
@@ -25,4 +27,13 @@ class Category(Base):
         return f'Category ({self.name})'
 
 
+class Level(Base):
+    __tablename__ = "levels"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(20), nullable=False, unique=True)
+    description = Column(Text, nullable=False)
+
+    def __repr__(self):
+        return f'Level ({self.name})'
 
