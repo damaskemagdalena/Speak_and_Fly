@@ -15,3 +15,14 @@ class Language(Base):
     def __repr__(self):
         return f'Language ({self.name})'
 
+class Category(Base):
+    __tablename__ = "categories"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(30), nullable=False, unique=True)
+
+    def __repr__(self):
+        return f'Category ({self.name})'
+
+
+
