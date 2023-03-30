@@ -12,6 +12,8 @@ class Language(Base):
     id = Column(Integer, primary_key = True)
     name = Column(String(20), nullable = False, unique = True)
 
+    course = relationship("Course", back_populates="languages")
+
     def __repr__(self):
         return f'Language ({self.name})'
 
@@ -20,6 +22,8 @@ class Category(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(30), nullable=False, unique=True)
+
+    course = relationship("Course", back_populates="categories")
 
     def __repr__(self):
         return f'Category ({self.name})'
@@ -30,6 +34,8 @@ class Level(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(20), nullable=False, unique=True)
     description = Column(Text, nullable=False)
+
+    course = relationship("Course", back_populates="levels")
 
     def __repr__(self):
         return f'Level ({self.name})'
@@ -46,3 +52,7 @@ class Course(Base):
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)
     price = Column(Float, nullable=False)
+
+    level = relationship("Level", back_populates="courses")
+    category = relationship("Category", back_populates="courses")
+    language = relationship("Language", back_populates="courses")
